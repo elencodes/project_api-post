@@ -6,15 +6,19 @@ document.addEventListener("DOMContentLoaded", function (event) {
 	const result = document.querySelector(`.result`);
 
 	function createPost() {
+		//Присваваем константам значения полей ввода (заголовок и текст)
 		const inputTitleValue = inputTitle.value;
 		const inputTextValue = inputText.value;
 		//Методом fetch отправляем POST-запрос на указанный адрес
 		fetch('https://jsonplaceholder.typicode.com/posts', {
+				//Указываем метод запроса
 				method: 'POST',
+				//Тело запроса в JSON-формате
 				body: JSON.stringify({
 					title: inputTitleValue,
 					body: inputTextValue,
 				}),
+				//Добавляем необходимые заголовки
 				headers: {
 					"Content-type": "application/json; charset=UTF-8"
 				}
@@ -47,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 			//catch сработает, если запросы then НЕ выполнены успешно (например, отвалился интернет)
 			.catch(error => console.log(`Ошибка. Запрос не выполнен`, error))
 	}
-	//добавляем слушатель события на кнопку и вызываем функцию при нажатии
+	//добавляем слушатель события и вызываем функцию при нажатии на кнопку
 	submitButton.addEventListener('click', function (event) {
 		//предотвращаем перезагрузку страницы и автоматическую отправку данных
 		event.preventDefault();
